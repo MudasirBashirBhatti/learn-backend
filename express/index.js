@@ -16,6 +16,11 @@ app.get("/download", (req, res) => {
     res.download("./uploads/dummy.webp")
 })
 
+//we can redirect to any route
+app.post("/login", (req, res) => {
+    res.redirect("https://www.google.com")
+})
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
