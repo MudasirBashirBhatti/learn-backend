@@ -1,0 +1,16 @@
+import express from 'express'
+
+const app = express()
+
+// both res.end and res.send used to send simple strings. Additionaly res.end is used to send large data like streaming data or videos data. while res.send is used to send raw string and for small data
+app.get("/", (req, res) => {
+    res.send("hello express js")
+})
+
+app.post("/end", (req, res) => {
+    res.end("heollos")
+})
+
+app.listen(8000, () => {
+    console.log("app listens on port 8000")
+})
