@@ -29,6 +29,22 @@ app.post("/appendHeader", (req, res) => {
     res.status(201).end("key value added to response header")
 })
 
+//we can set cookies data using using express by res.cookie
+app.post("/saveCookie", (req, res) => {
+    res.cookie("name", "Mudasir Bashir")
+    res.cookie("city", "Multan")
+
+    res.end("Cookie set successfully")
+})
+
+//clear cookies in express
+app.post("/removeCookie", (req, res) => {
+    res.clearCookie("name")
+    res.clearCookie("city")
+
+    res.end("Cookies cleared successfully")
+})
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
