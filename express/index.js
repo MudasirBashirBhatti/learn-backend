@@ -21,6 +21,14 @@ app.post("/login", (req, res) => {
     res.redirect("https://www.google.com")
 })
 
+//we can add key&values to response header
+app.post("/appendHeader", (req, res) => {
+    res.append("name", "Mudasir Bashir")
+    res.append("city", "Multan")
+
+    res.status(201).end("key value added to response header")
+})
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
