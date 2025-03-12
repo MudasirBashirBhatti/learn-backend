@@ -45,6 +45,21 @@ app.post("/removeCookie", (req, res) => {
     res.end("Cookies cleared successfully")
 })
 
+// .............................getAPIs............................
+
+//http://localhost:8000/getData?name=Mudasir Bashir&age=18
+app.get('/getData', (req, res) => {
+    const { name, age } = req.query
+    res.send(`My name is ${name} and I'm ${age} years old`)
+})
+
+app.get('/dataFromHeader', (req, res) => {
+    const { name, age } = req.headers
+    res.send(`My name is ${name} and I'm ${age} years old`)
+})
+
+
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
