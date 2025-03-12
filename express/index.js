@@ -11,6 +11,11 @@ app.post("/end", (req, res) => {
     res.end("heollos")
 })
 
+// this will simply download the file in browser but on post man it will only show the file rather download it.
+app.get("/download", (req, res) => {
+    res.download("./uploads/dummy.webp")
+})
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
