@@ -59,6 +59,13 @@ app.get('/dataFromHeader', (req, res) => {
 })
 
 
+// .............................use query data............................
+
+app.post('/postQuery', (req, res) => {
+    let first = req.query.firstName
+    let last = req.query.lastName
+    res.send(`My name is ${first} ${last}`)
+})
 
 app.listen(8000, () => {
     console.log("app listens on port 8000")
