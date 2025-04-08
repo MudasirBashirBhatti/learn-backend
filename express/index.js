@@ -4,6 +4,26 @@ import multer from 'multer'
 const app = express()
 app.use(express.json())
 
+
+// ........................middlewares.........................
+
+// 1. app level middleware
+// this middleware will be called for all routes
+
+app.use((req, res, next) => {
+    console.log('an endpoint is hitted')
+    next()
+})
+
+// 2.route level middlewares
+// this middleware will be called only uploadFile hit
+app.use('/uploadFile', (req, res, next) => {
+    console.log('uploadFile called!')
+    next()
+})
+
+// ...........................simple requests..............
+
 // both res.end and res.send used to send simple strings. Additionaly res.end is used to send large data like streaming data or videos data. while res.send is used to send raw string and for small data
 app.get("/", (req, res) => {
     res.send("hello express js")
@@ -76,7 +96,8 @@ app.post('/postJson', (req, res) => {
     res.send(jsonString)
 })
 
-// ..........................post formData.......................
+// ..........................post formData.......................'
+
 app.post('/uploadFile', (req, res) => {
     const storage = multer.diskStorage({
         destination: (req, file, callback) => {
@@ -98,6 +119,7 @@ app.post('/uploadFile', (req, res) => {
         }
     })
 })
+
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
