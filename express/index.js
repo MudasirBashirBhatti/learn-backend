@@ -1,6 +1,7 @@
 import express from 'express'
 
 const app = express()
+app.use(express.json())
 
 // both res.end and res.send used to send simple strings. Additionaly res.end is used to send large data like streaming data or videos data. while res.send is used to send raw string and for small data
 app.get("/", (req, res) => {
@@ -65,6 +66,13 @@ app.post('/postQuery', (req, res) => {
     let first = req.query.firstName
     let last = req.query.lastName
     res.send(`My name is ${first} ${last}`)
+})
+
+// ............................post json data........................ 
+app.post('/postJson', (req, res) => {
+    let jsonData = req.body
+    let jsonString = JSON.stringify(jsonData)
+    res.send(jsonString)
 })
 
 app.listen(8000, () => {
