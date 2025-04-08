@@ -1,4 +1,5 @@
 import express from 'express'
+import multer from 'multer'
 
 const app = express()
 app.use(express.json())
@@ -75,6 +76,28 @@ app.post('/postJson', (req, res) => {
     res.send(jsonString)
 })
 
+// ..........................post formData.......................
+app.post('/uploadFile', (req, res) => {
+    const storage = multer.diskStorage({
+        destination: (req, file, callback) => {
+            callback(null, './uploads')
+        },
+        filename: (req, file, callback) => {
+            callback(null, file.originalname)
+        }
+    })
+
+    const upload = multer({ storage: storage, limits: { fileSize: 20 * 1024 * 1024 } }).any('myFile')
+
+    upload(req, res, (error) => {
+        if (error) {
+            res.send(`Failed to upload file ${error}`)
+        }
+        else {
+            res.send('File uploaded successfully!')
+        }
+    })
+})
 app.listen(8000, () => {
     console.log("app listens on port 8000")
 })
